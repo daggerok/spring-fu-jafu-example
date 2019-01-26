@@ -1,0 +1,37 @@
+notifications:
+  email: false
+env:
+  global:
+    - TERM=dumb
+language: java
+jdk: oraclejdk8
+addons:
+  apt:
+    packages:
+      - bash
+      - sudo
+      - curl
+      - python-pip
+install: true
+before_install:
+  - sudo pip install httpie >/dev/null 2>&1
+  #
+  - source <(curl -s https://raw.githubusercontent.com/daggerok/bash-functions/master/main.bash)
+  - stop_any 8080 3000 80 >/dev/null
+
+script:
+  - ./mvnw >/dev/null
+  - java -jar target/*.jar &
+  - wait_for 8080
+  - http :8080
+  - http :8080/count
+  - http delete :8080
+  - http :8080/count
+  - http :8080 login=ololo firstName=trololo lastName=ohoho
+  - http :8080/ololo
+  - sleep 1
+  - stop_any 80 8080
+
+cache:
+  directories:
+    - $HOME/.m2
