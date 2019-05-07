@@ -7,6 +7,8 @@ http delete :8080
 http :8080/count
 http :8080 login=ololo firstName=trololo lastName=ohoho
 http :8080/ololo
+http put :8080/ololo login=trololo firstName=trololo lastName=trololo
+http :8080/trololo
 ```
 
 links:
