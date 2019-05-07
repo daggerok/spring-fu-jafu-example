@@ -1,10 +1,13 @@
 notifications:
   email: false
+git:
+  depth: 1
+  quiet: true
 env:
   global:
     - TERM=dumb
 language: java
-jdk: oraclejdk8
+jdk: openjdk8
 addons:
   apt:
     packages:
@@ -35,3 +38,5 @@ script:
 cache:
   directories:
     - $HOME/.m2
+  pip: true
+  packages: true
