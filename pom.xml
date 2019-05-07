@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.1.2.RELEASE</version>
+    <version>2.2.0.M2</version>
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
 
@@ -29,12 +29,12 @@
     <dependency>
       <groupId>io.vavr</groupId>
       <artifactId>vavr</artifactId>
-      <version>0.9.2</version>
+      <version>0.10.0</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.fu</groupId>
       <artifactId>spring-fu-jafu</artifactId>
-      <version>0.0.4</version>
+      <version>0.0.5</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -48,7 +48,7 @@
     <dependency>
       <groupId>io.r2dbc</groupId>
       <artifactId>r2dbc-h2</artifactId>
-      <version>1.0.0.M6</version>
+      <version>1.0.0.M7</version>
     </dependency>
 
     <dependency>
@@ -63,6 +63,36 @@
     </dependency>
   </dependencies>
 
+  <build>
+    <defaultGoal>clean package</defaultGoal>
+
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+
+      <!--
+        ./mvnw versions:display-dependency-updates
+        ./mvnw versions:use-releases
+        ./mvnw versions:use-next-releases
+        ./mvnw versions:use-latest-releases
+      -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>versions-maven-plugin</artifactId>
+        <version>2.7</version>
+        <!--<configuration>
+          <rulesUri>file://${project.basedir}/maven-version-rules.xml</rulesUri>
+          <rulesUri>http://www.mycompany.com/maven-version-rules.xml</rulesUri>
+          <excludes>
+            <exclude>org.apache.commons:commons-collections4</exclude>
+          </excludes>
+        </configuration>-->
+      </plugin>
+    </plugins>
+  </build>
+
   <repositories>
     <repository>
       <id>spring-milestones</id>
@@ -70,15 +100,5 @@
       <url>https://repo.spring.io/milestone</url>
     </repository>
   </repositories>
-
-  <build>
-    <defaultGoal>clean package</defaultGoal>
-    <plugins>
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-      </plugin>
-    </plugins>
-  </build>
 
 </project>
